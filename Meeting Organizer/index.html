@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+    <script src="angular.min.js"></script>
+    <script src="ngcontroller.js"></script>
+
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        td {
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+<body ng-app="proje1" ng-controller="Toplanti">
+    <table class="table table-hovered">
+        <tr>
+            <th>Toplantı Konusu</th>
+            <th>Tarihi</th>
+            <th>Başlangıç Saati</th>
+            <th>Bitiş Saati</th>
+            <th>Katılımcılar</th>
+        </tr>
+
+        <tr ng-repeat="x in list">
+            <td>{{x.ToplantiKonusu}}</td>
+            <td>{{x.Tarih}}</td>
+            <td>{{x.BaslangicSaati}}</td>
+            <td>{{x.BitisSaati}}</td>
+            <td>{{x.Katilimcilar}}</td>
+
+            <td>
+                <button class="btn btn-danger" ng-click="ToplantiSilID(x.ToplantiID)">Sil</button>
+                <button class="btn btn-info" ng-click="ToplantiGuncelle(x)">Güncelle</button>
+            </td>
+
+
+        </tr>
+    </table><hr />
+
+    <input class="form-control" type="text" ng-model="ToplantiTip.ToplantiKonusu" placeholder="Toplantı Konusunu Giriniz." /><br />
+    <input class="form-control" type="text" ng-model="ToplantiTip.Tarih" placeholder="Tarih Giriniz." /><br />
+    <input class="form-control" type="text" ng-model="ToplantiTip.BaslangicSaati" placeholder="Başlangıç Saati Giriniz." /><br />
+    <input class="form-control" type="text" ng-model="ToplantiTip.BitisSaati" placeholder="Bitiş Saati Giriniz." /><br />
+    <input class="form-control" type="text" ng-model="ToplantiTip.Katilimcilar" placeholder="Katılımcıları Giriniz." /><br />
+
+    <button class="btn btn-success" ng-show="ToplantiTip.ToplantiID == undefined" ng-click="ToplantiEkle(ToplantiTip)">Toplantı Ekle</button>
+    <button class="btn btn-warning" ng-show="ToplantiTip.ToplantiID != undefined" ng-click="guncelle(ToplantiTip)">Güncelle</button>
+    <button class="btn btn-danger" ng-show="ToplantiTip.ToplantiID != undefined" ng-click="islemiptal()">İptal</button>
+
+</body>
+</html>
